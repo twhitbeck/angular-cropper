@@ -178,6 +178,8 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       };
 
       var touchstart = function touchstart(e) {
+        e.preventDefault();
+
         if (e.touches.length === 1) {
           start(e.touches[0].clientX, e.touches[0].clientY);
         }
