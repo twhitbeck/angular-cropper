@@ -26,7 +26,7 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
 
       var canvas = el[0];
       var ctx = canvas.getContext('2d');
-      var img = document.createElement('img');
+      var img = new Image();
       var x, y, scale, maxScale;
 
       var draw = function draw() {
@@ -80,19 +80,21 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
         }
 
         twFileReader.readAsDataURL(newVal).then(function(dataURL) {
+          img.onload = function() {
+            x = 0;
+            y = 0;
+            scale = 1;
+
+            if (img.width > img.height) {
+              maxScale = img.height / canvas.height;
+            } else {
+              maxScale = img.width / canvas.width;
+            }
+
+            draw();
+          };
+
           img.src = dataURL;
-
-          x = 0;
-          y = 0;
-          scale = 1;
-
-          if (img.width > img.height) {
-            maxScale = img.height / canvas.height;
-          } else {
-            maxScale = img.width / canvas.width;
-          }
-
-          draw();
         });
       });
 

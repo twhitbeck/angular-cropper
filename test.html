@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cropper-test">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body ng-controller="MainController as main">
+    <div>
+      <input type="file" accept="image/*" simple-change="file = $event.target.files[0]">
+    </div>
+
+    <canvas width="400" height="400" tw-cropper="cropper" source="file"></canvas>
+
+    <button ng-click="crop = cropper.toDataURL()">Crop</button>
+
+    <img ng-src="{{crop}}">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-file-reader/angular-file-reader.js"></script>
+    <script src="angular-cropper.js"></script>
+
+    <script>
+      angular.module('cropper-test', ['tw.directives.cropper']);
+
+      angular.module('cropper-test').controller('MainController', function() {
+      });
+
+      angular.module('cropper-test').directive('simpleChange', function simpleChangeDirective() {
+        return {
+          restrict: 'A',
+          link: function(scope, el, attrs) {
+            if (!attrs.simpleChange) return;
+
+            el.on('change', function(e) {
+              scope.$apply(function() {
+                scope.$eval(attrs.simpleChange, {
+                  $event: e
+                });
+              });
+            });
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
