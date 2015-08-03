@@ -200,6 +200,8 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       el.on('wheel', function(e) {
         e.preventDefault();
 
+        e = e.originalEvent || e;
+
         if (!img.src) {
           return;
         }
