@@ -1,6 +1,6 @@
 {
   "name": "angular-cropper",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "A simple image cropper angular.js (1.x) directive",
   "main": "angular-cropper.js",
   "repository": {
