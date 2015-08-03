@@ -1,6 +1,8 @@
 angular-cropper
 ===============
 
+[![Join the chat at https://gitter.im/twhitbeck/angular-cropper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/twhitbeck/angular-cropper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > Touch-enabled image cropper for AngularJS
 
 [Demo](http://plnkr.co/edit/s96ZCYmP5ELtqdIMieKC?p=preview)
