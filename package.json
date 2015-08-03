@@ -1,0 +1,25 @@
+{
+  "name": "angular-cropper",
+  "version": "0.8.0",
+  "description": "A simple image cropper angular.js (1.x) directive",
+  "main": "angular-cropper.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twhitbeck/angular-cropper.git"
+  },
+  "keywords": [
+    "angular",
+    "angular.js",
+    "angularjs",
+    "crop",
+    "image",
+    "mobile",
+    "cropper"
+  ],
+  "author": "twhitbeck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twhitbeck/angular-cropper/issues"
+  },
+  "homepage": "https://github.com/twhitbeck/angular-cropper#readme"
+}

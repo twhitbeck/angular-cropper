@@ -10,6 +10,12 @@ angular-cropper
 $ bower install angular-cropper
 ```
 
+or
+
+```sh
+$ npm install angular-cropper
+```
+
 ### Use it
 * Include files in your html
   * `bower_components/angular-file-reader/angular-file-reader.js`
