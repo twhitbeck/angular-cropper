@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/twhitbeck/angular-cropper/issues"
   },
-  "homepage": "https://github.com/twhitbeck/angular-cropper#readme"
+  "homepage": "https://github.com/twhitbeck/angular-cropper#readme",
+  "dependencies": {
+    "angular-file-reader": "^1.0.0"
+  },
+  "peerDependencies": {
+    "angular": "^1.4.8"
+  }
 }

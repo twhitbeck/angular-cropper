@@ -2,7 +2,7 @@ angular.module('tw.directives.cropper', ['tw.services.fileReader']);
 
 angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$window', '$document', 'twFileReader', function($parse, $window, $document, twFileReader) {
   var document = $document[0],
-  Math = $window.Math;
+    Math = $window.Math;
 
   return {
     restrict: 'A',
@@ -27,10 +27,19 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       var canvas = el[0];
       var ctx = canvas.getContext('2d');
       var img = new Image();
-      var x, y, scale, maxScale;
+      var x, y, scale, maxScale, minScale;
 
       var draw = function draw() {
-        ctx.drawImage(img, x, y, canvas.width * scale, canvas.height * scale, 0, 0, canvas.width, canvas.height);
+        var sx = x,
+          sy = y,
+          sWidth = canvas.width * scale,
+          sHeight = canvas.height * scale,
+          dx = 0,
+          dy = 0,
+          dWidth = canvas.width,
+          dHeight = canvas.height;
+
+        ctx.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
       };
 
       var zoom = function zoom(dScale) {
@@ -38,8 +47,8 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
 
         scale += dScale;
 
-        if (scale < 1) {
-          scale = 1;
+        if (scale < minScale) {
+          scale = minScale;
         } else if (scale > maxScale) {
           scale = maxScale;
         }
@@ -83,12 +92,21 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
           img.onload = function() {
             x = 0;
             y = 0;
-            scale = 1;
+            scale = minScale = 1;
 
             if (img.width > img.height) {
               maxScale = img.height / canvas.height;
             } else {
               maxScale = img.width / canvas.width;
+
+            }
+
+            if (img.height < canvas.height) {
+              scale = minScale = maxScale;
+            }
+
+            if (img.width < canvas.width) {
+              scale = minScale = maxScale;
             }
 
             draw();
