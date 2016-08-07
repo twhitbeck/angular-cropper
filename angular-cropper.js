@@ -1,12 +1,12 @@
 angular.module('tw.directives.cropper', ['tw.services.fileReader']);
 
-angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$window', '$document', 'twFileReader', function ($parse, $window, $document, twFileReader) {
+angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$window', '$document', 'twFileReader', function($parse, $window, $document, twFileReader) {
   var document = $document[0],
     Math = $window.Math;
 
   return {
     restrict: 'A',
-    controller: ['$scope', '$attrs', '$element', function ($scope, $attrs, $element) {
+    controller: ['$scope', '$attrs', '$element', function($scope, $attrs, $element) {
       var canvas = $element[0];
 
       // If twCropper attribute is provided
@@ -19,7 +19,7 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
         return canvas.toDataURL();
       };
     }],
-    link: function (scope, el, attrs) {
+    link: function(scope, el, attrs) {
       if (angular.lowercase(el[0].nodeName) !== 'canvas') {
         return;
       }
@@ -81,15 +81,15 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
         }
       };
 
-      scope.$watch(attrs.source, function (newVal) {
+      scope.$watch(attrs.source, function(newVal) {
         if (!newVal) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
           return;
         }
 
-        twFileReader.readAsDataURL(newVal).then(function (dataURL) {
-          img.onload = function () {
+        twFileReader.readAsDataURL(newVal).then(function(dataURL) {
+          img.onload = function() {
             x = 0;
             y = 0;
             scale = minScale = 1;
@@ -158,7 +158,7 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
         var x2 = touch2.clientX;
         var y2 = touch2.clientY;
 
-        var newD = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        var newD = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
 
         if (d !== null) {
           var dx = newD - d;
@@ -181,7 +181,7 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
         }
       };
 
-      var start = function (x, y) {
+      var start = function(x, y) {
         if (!img.src) {
           return;
         }
@@ -198,7 +198,6 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       };
 
       var touchstart = function touchstart(e) {
-
         e = e.originalEvent || e;
 
         e.preventDefault();
@@ -220,7 +219,7 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
 
       $document.on('mouseup touchend', end);
 
-      el.on('wheel', function (e) {
+      el.on('wheel', function(e) {
         e.preventDefault();
 
         e = e.originalEvent || e;
