@@ -172,6 +172,8 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       };
 
       var touchmove = function touchmove(e) {
+        e = e.originalEvent || e;
+
         if (e.touches.length === 1) {
           move(e.touches[0].clientX, e.touches[0].clientY);
         } else if (e.touches.length === 2) {
@@ -196,6 +198,8 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       };
 
       var touchstart = function touchstart(e) {
+        e = e.originalEvent || e;
+
         e.preventDefault();
 
         if (e.touches.length === 1) {
