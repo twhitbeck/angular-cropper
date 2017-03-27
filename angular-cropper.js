@@ -172,6 +172,7 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       };
 
       var touchmove = function touchmove(e) {
+        // jQuery doesn't copy touches over to its event, so we need to go through originalEvent in that case
         e = e.originalEvent || e;
 
         if (e.touches.length === 1) {
@@ -198,6 +199,7 @@ angular.module('tw.directives.cropper').directive('twCropper', ['$parse', '$wind
       };
 
       var touchstart = function touchstart(e) {
+        // jQuery doesn't copy touches over to its event, so we need to go through originalEvent in that case
         e = e.originalEvent || e;
 
         e.preventDefault();
