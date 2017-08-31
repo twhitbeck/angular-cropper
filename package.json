@@ -17,7 +17,7 @@
     "cropper"
   ],
   "author": "twhitbeck",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/twhitbeck/angular-cropper/issues"
   },
